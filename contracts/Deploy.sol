@@ -7,9 +7,9 @@ contract Deploy {
 	TokenGeyser private tokenGeyser;
 
 	constructor(address staking, address reword, uint256 maxUnlockSchedules, uint256 startBonus, uint256 bonusPeriodSec, uint256 initialSharesPerToken) public {
-		IERC20 idev = IERC20(staking);
-		IERC20 iuniv2 = IERC20(reword);
-		tokenGeyser = new TokenGeyser(idev, iuniv2, maxUnlockSchedules, startBonus, bonusPeriodSec, initialSharesPerToken);
+		IERC20 iuniv2 = IERC20(staking);
+		IERC20 idev = IERC20(reword);
+		tokenGeyser = new TokenGeyser(iuniv2, idev, maxUnlockSchedules, startBonus, bonusPeriodSec, initialSharesPerToken);
 		tokenGeyser.transferOwnership(msg.sender);
 	}
 
