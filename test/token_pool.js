@@ -22,8 +22,8 @@ describe('tokenPool', function () {
     tokenPool = await TokenPool.new(token.address);
   });
 
-  describe('balance', function() {
-    it('should return the balance of the token pool', async function(){
+  describe('balance', function () {
+    it('should return the balance of the token pool', async function () {
       await token.transfer(tokenPool.address, 123);
       expect(await tokenPool.balance.call()).to.be.bignumber.equal('123');
       await tokenPool.transfer(owner, 99);
@@ -33,8 +33,8 @@ describe('tokenPool', function () {
     });
   });
 
-  describe('transfer', function() {
-    it('should let the owner transfer funds out', async function(){
+  describe('transfer', function () {
+    it('should let the owner transfer funds out', async function () {
       await token.transfer(tokenPool.address, 1000);
 
       expect(await tokenPool.balance.call()).to.be.bignumber.equal('1000');
@@ -46,7 +46,7 @@ describe('tokenPool', function () {
       expect(await token.balanceOf.call(anotherAccount)).to.be.bignumber.equal('1000');
     });
 
-    it('should NOT let other users transfer funds out', async function(){
+    it('should NOT let other users transfer funds out', async function () {
       await token.transfer(tokenPool.address, 1000);
       await expectRevert(
         tokenPool.transfer(anotherAccount, 1000, { from: anotherAccount }),
@@ -55,8 +55,8 @@ describe('tokenPool', function () {
     });
   });
 
-  describe('rescueFunds', function() {
-    beforeEach(async function(){
+  describe('rescueFunds', function () {
+    beforeEach(async function () {
       await token.transfer(tokenPool.address, 1000);
       await otherToken.transfer(tokenPool.address, 2000);
 
@@ -66,7 +66,7 @@ describe('tokenPool', function () {
       expect(await otherToken.balanceOf.call(anotherAccount)).to.be.bignumber.equal('0');
     });
 
-    it('should let owner users claim excess funds completely', async function(){
+    it('should let owner users claim excess funds completely', async function () {
       await tokenPool.rescueFunds(otherToken.address, anotherAccount, 2000);
 
       expect(await tokenPool.balance.call()).to.be.bignumber.equal('1000');
@@ -75,7 +75,7 @@ describe('tokenPool', function () {
       expect(await otherToken.balanceOf.call(anotherAccount)).to.be.bignumber.equal('2000');
     });
 
-    it('should let owner users claim excess funds partially', async function(){
+    it('should let owner users claim excess funds partially', async function () {
       await tokenPool.rescueFunds(otherToken.address, anotherAccount, 777);
 
       expect(await tokenPool.balance.call()).to.be.bignumber.equal('1000');
@@ -84,21 +84,21 @@ describe('tokenPool', function () {
       expect(await otherToken.balanceOf.call(anotherAccount)).to.be.bignumber.equal('777');
     });
 
-    it('should NOT let owner claim more than available excess funds', async function(){
+    it('should NOT let owner claim more than available excess funds', async function () {
       await expectRevert(
         tokenPool.rescueFunds(otherToken.address, anotherAccount, 2001),
         'ERC20: transfer amount exceeds balance'
       );
     });
 
-    it('should NOT let owner users claim held funds', async function(){
+    it('should NOT let owner users claim held funds', async function () {
       await expectRevert(
         tokenPool.rescueFunds(token.address, anotherAccount, 1000),
         'TokenPool: Cannot claim token held by the contract'
       );
     });
 
-    it('should NOT let other users users claim excess funds', async function(){
+    it('should NOT let other users users claim excess funds', async function () {
       await expectRevert(
         tokenPool.rescueFunds(otherToken.address, anotherAccount, 2000, { from: anotherAccount }),
         'Ownable: caller is not the owner'
