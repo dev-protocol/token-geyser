@@ -1,6 +1,15 @@
 # Token Geyser
 
-[![Build Status](https://travis-ci.com/ampleforth/token-geyser.svg?token=o34Gqy9mFp6fX3Y6jzyy&branch=master)](https://travis-ci.com/ampleforth/token-geyser)&nbsp;&nbsp;[![Coverage Status](https://coveralls.io/repos/github/ampleforth/token-geyser/badge.svg?branch=master&t=LdZfUk)](https://coveralls.io/github/ampleforth/token-geyser?branch=master)
+[![Build Status](https://travis-ci.org/dev-protocol/token-geyser.svg?branch=main)](https://travis-ci.org/dev-protocol/token-geyser)&nbsp;&nbsp;[![Coverage Status](https://coveralls.io/repos/github/dev-protocol/token-geyser/badge.svg?branch=main&t=LdZfUk)](https://coveralls.io/github/dev-protocol/token-geyser?branch=main)
+
+---
+
+The difference with [ampleforth/token-geyser](https://github.com/ampleforth/token-geyser)
+
+- Ours as a head source: https://github.com/ampleforth/token-geyser/compare/master...dev-protocol:main
+- Theirs as a head source: https://github.com/dev-protocol/token-geyser/compare/main...ampleforth:master
+
+---
 
 A smart-contract based mechanism to distribute tokens over time, inspired loosely by Compound and Uniswap.
 
