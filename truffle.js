@@ -1,3 +1,4 @@
+/* eslint-disable spellcheck/spell-checker */
 const connectionConfig = require('frg-ethereum-runners/config/network_config.json');
 
 const mainnetUrl = 'https://mainnet.infura.io/v3/2521699167dc43c8b4c15f07860c208a';

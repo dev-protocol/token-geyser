@@ -1,5 +1,5 @@
 const { contract, web3 } = require('@openzeppelin/test-environment');
-const { expectRevert, expectEvent } = require('@openzeppelin/test-helpers');
+const { expectRevert } = require('@openzeppelin/test-helpers');
 const { expect } = require('chai');
 
 const _require = require('app-root-path').require;
