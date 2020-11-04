@@ -1,3 +1,4 @@
+/* eslint-disable spellcheck/spell-checker */
 const connectionConfig = require('frg-ethereum-runners/config/network_config.json');
 
 const mainnetUrl = 'https://mainnet.infura.io/v3/2521699167dc43c8b4c15f07860c208a';
@@ -18,7 +19,6 @@ function keystoreProvider (providerURL) {
   return new HDWalletProvider(wallet._privKey.toString('hex'), providerURL);
 }
 
-
 module.exports = {
   networks: {
     ganacheUnitTest: connectionConfig.ganacheUnitTest,
@@ -29,7 +29,7 @@ module.exports = {
       network_id: 1,
       provider: () => keystoreProvider(mainnetUrl),
       gasPrice: 35000000000
-    },
+    }
   },
   mocha: {
     enableTimeouts: false,

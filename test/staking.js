@@ -214,16 +214,15 @@ describe('staking', function () {
         // stakesFor only callable by owner
         await dist.stakeFor(owner, $AMPL(1), [], { from: owner });
         await expectRevert(dist.stakeFor(owner, $AMPL(1), [], { from: anotherAccount }),
-            'Ownable: caller is not the owner.');
+          'Ownable: caller is not the owner.');
       });
     });
   });
 });
 
-
 describe('rescueFundsFromStakingPool', function () {
-  describe('when tokens gets air-dropped', function() {
-    it('should allow the owner to claim them', async function() {
+  describe('when tokens gets air-dropped', function () {
+    it('should allow the owner to claim them', async function () {
       const accounts = await chain.getUserAccounts();
       owner = web3.utils.toChecksumAddress(accounts[0]);
       anotherAccount = web3.utils.toChecksumAddress(accounts[8]);
@@ -261,6 +260,6 @@ describe('rescueFundsFromStakingPool', function () {
       );
 
       expect(await ampl.balanceOf.call(stakingPool)).to.be.bignumber.equal($AMPL(100));
-    })
+    });
   });
 });

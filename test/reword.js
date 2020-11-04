@@ -1,6 +1,5 @@
 /* eslint-disable spellcheck/spell-checker */
 const { contract, web3 } = require('@openzeppelin/test-environment');
-const { expect } = require('chai');
 const { BN } = require('@openzeppelin/test-helpers');
 const _require = require('app-root-path').require;
 const BlockchainCaller = _require('/util/blockchain_caller');

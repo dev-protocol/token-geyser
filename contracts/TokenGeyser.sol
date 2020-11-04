@@ -511,6 +511,6 @@ contract TokenGeyser is IStaking, Ownable {
     function rescueFundsFromStakingPool(address tokenToRescue, address to, uint256 amount)
         public onlyOwner returns (bool) {
 
-        return _stakingPool.rescueFunds(tokenToRescue, to, amount);
-    }
+            return _stakingPool.rescueFunds(tokenToRescue, to, amount);
+        }
 }

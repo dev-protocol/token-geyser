@@ -15,6 +15,8 @@ describe('deploy', function () {
       const tokenGeyser = await TokenGeyser.at(tokenGeyserAddress);
       expect(await tokenGeyser.startBonus.call()).to.be.bignumber.equal('0');
       expect(await tokenGeyser.bonusPeriodSec.call()).to.be.bignumber.equal('2592000');
+      expect(await tokenGeyser.getStakingToken.call()).to.be.equal(stakedToken.address);
+      expect(await tokenGeyser.getDistributionToken.call()).to.be.equal(rewordToken.address);
     });
   });
 });
