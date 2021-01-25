@@ -4,9 +4,11 @@ class BlockchainCaller {
   constructor (web3) {
     this._web3 = web3;
   }
+
   get web3 () {
     return this._web3;
   }
+
   rpcmsg (method, params = []) {
     return {
       jsonrpc: '2.0',

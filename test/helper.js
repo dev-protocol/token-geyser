@@ -39,19 +39,23 @@ class TimeController {
   async initialize () {
     this.currentTime = await time.latest();
   }
+
   async advanceTime (seconds) {
     this.currentTime = this.currentTime.add(new BN(seconds));
     await setTimeForNextTransaction(this.currentTime);
   }
+
   async executeEmptyBlock () {
     await time.advanceBlock();
   }
+
   async executeAsBlock (Transactions) {
     await this.pauseTime();
     Transactions();
     await this.resumeTime();
     await time.advanceBlock();
   }
+
   async pauseTime () {
     return promisify(web3.currentProvider.send.bind(web3.currentProvider))({
       jsonrpc: '2.0',
@@ -59,6 +63,7 @@ class TimeController {
       id: new Date().getTime()
     });
   }
+
   async resumeTime () {
     return promisify(web3.currentProvider.send.bind(web3.currentProvider))({
       jsonrpc: '2.0',
@@ -110,4 +115,4 @@ async function setTimeForNextTransaction (target) {
   increaseTimeForNextTransaction(diff);
 }
 
-module.exports = {checkAmplAprox, checkSharesAprox, invokeRebase, $AMPL, setTimeForNextTransaction, TimeController, printMethodOutput, printStatus};
+module.exports = { checkAmplAprox, checkSharesAprox, invokeRebase, $AMPL, setTimeForNextTransaction, TimeController, printMethodOutput, printStatus };
